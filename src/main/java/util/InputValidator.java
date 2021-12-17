@@ -32,9 +32,18 @@ public class InputValidator {
 		}
 	}
 
-	public static void isValidMenuQuantity(String menuNumber, int menuQuantity, Table table) {
-		if (!table.canOrder(menuNumber, menuQuantity)) {
+	public static int isValidMenuQuantity(String menuNumber, String menuQuantity, Table table) {
+		try {
+			Integer.parseInt(menuQuantity);
+		} catch (NumberFormatException e) {
+			throw new IllegalArgumentException(ERROR + "숫자여야합니다.");
+		}
+		if (!table.canOrder(menuNumber, Integer.parseInt(menuQuantity))) {
 			throw new IllegalArgumentException(ERROR + INVALID_MENU_QUANTITY);
 		}
+		if (Integer.parseInt(menuQuantity) < 0) {
+			throw new IllegalArgumentException(ERROR + "양수여야합니다.");
+		}
+		return Integer.parseInt(menuQuantity);
 	}
 }

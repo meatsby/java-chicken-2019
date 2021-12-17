@@ -79,10 +79,10 @@ public class PosController {
 	}
 
 	private int getMenuQuantity(String menuNumber, Table table) {
-		int menuQuantity = InputView.inputMenuQuantity();
+		String menuQuantity = InputView.inputMenuQuantity();
 		try {
-			InputValidator.isValidMenuQuantity(menuNumber, menuQuantity, table);
-			return menuQuantity;
+			int quantity = InputValidator.isValidMenuQuantity(menuNumber, menuQuantity, table);
+			return quantity;
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
 			return getMenuQuantity(menuNumber, table);

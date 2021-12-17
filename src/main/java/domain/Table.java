@@ -36,4 +36,14 @@ public class Table {
     public String toString() {
         return Integer.toString(number);
     }
+
+    public boolean hasOrder() {
+        int totalOrder = 0;
+        for (int order : orders.values()) {
+            if (order != 0) {
+                totalOrder += 1;
+            }
+        }
+        return totalOrder != 0;
+    }
 }
