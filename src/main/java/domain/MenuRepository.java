@@ -21,4 +21,12 @@ public class MenuRepository {
     public static List<Menu> menus() {
         return Collections.unmodifiableList(menus);
     }
+
+    public static List<String> menuNumbers() {
+        List<String> menuNumbers = new ArrayList<>();
+        for (Menu menu : menus) {
+            menuNumbers.add(menu.getNumber());
+        }
+        return menuNumbers;
+    }
 }

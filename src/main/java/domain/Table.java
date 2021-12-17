@@ -19,6 +19,12 @@ public class Table {
         orders.put(menuNumber, menuQuantity);
     }
 
+    public void canOrder() {
+        for (Map.Entry<String, String> order : orders.entrySet()) {
+
+        }
+    }
+
     @Override
     public String toString() {
         return Integer.toString(number);
