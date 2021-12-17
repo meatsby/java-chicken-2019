@@ -20,8 +20,8 @@ public class InputView {
         return scanner.nextLine();
     }
 
-    public static String inputMenuQuantity() {
+    public static int inputMenuQuantity() {
         System.out.println("## 메뉴의 수량을 입력하세요.");
-        return scanner.nextLine();
+        return scanner.nextInt();
     }
 }

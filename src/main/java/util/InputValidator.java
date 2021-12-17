@@ -1,6 +1,7 @@
 package util;
 
 import domain.MenuRepository;
+import domain.Table;
 import domain.TableRepository;
 
 public class InputValidator {
@@ -11,6 +12,7 @@ public class InputValidator {
 	private static final String INVALID_INPUT = "유효한 입력이 아닙니다.";
 	private static final String INVALID_TABLE_NUMBER = "해당 테이블이 존재하지 않습니다.";
 	private static final String INVALID_MENU_NUMBER = "해당 메뉴가 존재하지 않습니다.";
+	private static final String INVALID_MENU_QUANTITY = "최대 99개까지 주문 가능합니다.";
 
 	public static void isValidMainCommend(String mainCommend) {
 		if (!(mainCommend.equals(PLACE_ORDER) || mainCommend.equals(PAYMENT) || mainCommend.equals(TERMINATION))) {
@@ -30,6 +32,9 @@ public class InputValidator {
 		}
 	}
 
-	public static void isValidMenuQuantity(String menuQuantity) {
+	public static void isValidMenuQuantity(String menuNumber, int menuQuantity, Table table) {
+		if (!table.canOrder(menuNumber, menuQuantity)) {
+			throw new IllegalArgumentException(ERROR + INVALID_MENU_QUANTITY);
+		}
 	}
 }

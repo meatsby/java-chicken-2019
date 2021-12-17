@@ -29,9 +29,9 @@ public class PosController {
 		String tableNumber = getTableNumber();
 		OutputView.printMenus(MenuRepository.menus());
 		String menuNumber = getMenuNumber();
-		String menuQuantity = getMenuQuantity();
 		for (Table table : TableRepository.tables()) {
 			if (tableNumber.equals(table.toString())) {
+				int menuQuantity = getMenuQuantity(menuNumber, table);
 				table.addOrder(menuNumber, menuQuantity);
 			}
 		}
@@ -78,14 +78,14 @@ public class PosController {
 		}
 	}
 
-	private String getMenuQuantity() {
-		String menuQuantity = InputView.inputMenuQuantity();
+	private int getMenuQuantity(String menuNumber, Table table) {
+		int menuQuantity = InputView.inputMenuQuantity();
 		try {
-			InputValidator.isValidMenuQuantity(menuQuantity);
+			InputValidator.isValidMenuQuantity(menuNumber, menuQuantity, table);
 			return menuQuantity;
 		} catch (IllegalArgumentException e) {
 			OutputView.printError(e.getMessage());
-			return getMenuQuantity();
+			return getMenuQuantity(menuNumber, table);
 		}
 	}
 
