@@ -10,8 +10,8 @@ public class InputView {
         return scanner.nextInt();
     }
 
-    public static int inputMenu() {
+    public static String inputMenu() {
         System.out.println("## 원하는 기능을 선택하세요.");
-        return scanner.nextInt();
+        return scanner.nextLine();
     }
 }

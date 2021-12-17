@@ -45,4 +45,9 @@ public class OutputView {
         System.out.println("3. 프로그램 종료");
         System.out.println();
     }
+
+    public static void printError(String message) {
+        System.out.println(message);
+        System.out.println();
+    }
 }
