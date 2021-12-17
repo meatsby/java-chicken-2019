@@ -1,6 +1,7 @@
 package controller;
 
 import domain.MenuRepository;
+import domain.Table;
 import domain.TableRepository;
 import util.InputValidator;
 import view.InputView;
@@ -12,10 +13,10 @@ public class PosController {
 			OutputView.printMainMenu();
 			String mainCommend = getMainCommend();
 			if (mainCommend.equals("1")) {
-				// executeOrder();
+				executeOrder();
 			}
 			if (mainCommend.equals("2")) {
-				// executePayment();
+				executePayment();
 			}
 			if (mainCommend.equals("3")) {
 				return;
@@ -23,21 +24,26 @@ public class PosController {
 		}
 	}
 
-	// private void executeOrder() {
-	// 	OutputView.printTables(TableRepository.tables());
-	// 	int tableNumber = getTableNumber();
-	// 	OutputView.printMenus(MenuRepository.menus());
-	// 	int menuNumber = getMenuNumber();
-	// 	int menuQuantity = getMenuQuantity();
-	// }
-	//
-	// private void executePayment() {
-	// 	OutputView.printTables(TableRepository.tables());
-	// 	int tableNumber = getTableNumber();
-	// 	OutputView.printOrderList();
-	// 	int paymentType = getPaymentType();
-	// 	OutputView.printPayment();
-	// }
+	private void executeOrder() {
+		OutputView.printTables(TableRepository.tables());
+		String tableNumber = getTableNumber();
+		OutputView.printMenus(MenuRepository.menus());
+		String menuNumber = getMenuNumber();
+		String menuQuantity = getMenuQuantity();
+		for (Table table : TableRepository.tables()) {
+			if (tableNumber.equals(table.toString())) {
+				table.addOrder(menuNumber, menuQuantity);
+			}
+		}
+	}
+
+	private void executePayment() {
+		// OutputView.printTables(TableRepository.tables());
+		// String tableNumber = getTableNumber();
+		// OutputView.printOrderList();
+		// String paymentType = getPaymentType();
+		// OutputView.printPayment();
+	}
 
 	private String getMainCommend() {
 		String mainCommend = InputView.inputMenu();
@@ -50,41 +56,41 @@ public class PosController {
 		}
 	}
 
-	// private int getTableNumber() {
-	// 	int tableNumber = InputView.inputTableNumber();
-	// 	try {
-	// 		InputValidator.isValidTableNumber(tableNumber);
-	// 		return tableNumber;
-	// 	} catch (IllegalArgumentException e) {
-	// 		OutputView.printError(e.getMessage());
-	// 		return getTableNumber();
-	// 	}
-	// }
-	//
-	// private int getMenuNumber() {
-	// 	int menuNumber = InputView.inputMenuNumber();
-	// 	try {
-	// 		InputValidator.isValidMenuNumber(menuNumber);
-	// 		return menuNumber;
-	// 	} catch (IllegalArgumentException e) {
-	// 		OutputView.printError(e.getMessage());
-	// 		return getMenuNumber();
-	// 	}
-	// }
-	//
-	// private int getMenuQuantity() {
-	// 	int menuQuantity = InputView.inputMenuQuantity();
-	// 	try {
-	// 		InputValidator.isValidMenuQuantity(menuQuantity);
-	// 		return menuQuantity;
-	// 	} catch (IllegalArgumentException e) {
-	// 		OutputView.printError(e.getMessage());
-	// 		return getMenuQuantity();
-	// 	}
-	// }
-	//
-	// private int getPaymentType() {
-	// 	int paymentType = InputView.inputPayMentType();
+	private String getTableNumber() {
+		String tableNumber = InputView.inputTableNumber();
+		try {
+			InputValidator.isValidTableNumber(tableNumber);
+			return tableNumber;
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			return getTableNumber();
+		}
+	}
+
+	private String getMenuNumber() {
+		String menuNumber = InputView.inputMenuNumber();
+		try {
+			InputValidator.isValidMenuNumber(menuNumber);
+			return menuNumber;
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			return getMenuNumber();
+		}
+	}
+
+	private String getMenuQuantity() {
+		String menuQuantity = InputView.inputMenuQuantity();
+		try {
+			InputValidator.isValidMenuQuantity(menuQuantity);
+			return menuQuantity;
+		} catch (IllegalArgumentException e) {
+			OutputView.printError(e.getMessage());
+			return getMenuQuantity();
+		}
+	}
+
+	// private String getPaymentType() {
+	// 	String paymentType = InputView.inputPayMentType();
 	// 	try {
 	// 		InputValidator.isValidPayMentType(paymentType);
 	// 		return paymentType;

@@ -19,4 +19,12 @@ public class TableRepository {
     public static List<Table> tables() {
         return Collections.unmodifiableList(tables);
     }
+
+    public static List<String> tableNumbers() {
+        List<String> tableNumbers = new ArrayList<>();
+        for (Table table : tables) {
+            tableNumbers.add(table.toString());
+        }
+        return tableNumbers;
+    }
 }
